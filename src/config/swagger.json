@@ -1,0 +1,39 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "version": "1.0.0"
+    },
+    "host": "localhost:3000",
+    "basePath": "/api/v1",
+    "schemes": ["http"],
+    "produces": ["application/json"],
+    "paths": {
+      "/unit-convert": {
+        "get": {
+          "tags": ["Conversion Packet"],
+          "summary": "Convert and check answer given",
+          "responses": {
+            "200": {
+              "description": "OK"
+            },
+            "400": {
+              "description": "Bad request"
+            }
+          },
+          "content": {
+            "application/json": {}
+          },
+          "parameters": [
+            {
+              "name": "q",
+              "in": "query",
+              "description": "The Conversion Packet",
+              "required": true,
+              "type": "string"
+            }
+          ]
+        }
+      }
+    }
+  }
+  
