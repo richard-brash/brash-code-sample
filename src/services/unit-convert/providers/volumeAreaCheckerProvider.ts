@@ -1,6 +1,9 @@
 import { IConversionChecker } from "./IConversionChecker";
 import { ConversionPacket } from "../../../models/conversionPacket";
 import { ConversionCheckResponse } from "../../../models/conversionCheckResponse";
+import { HTTP400Error } from "../../../utils/httpErrors";
+
+var convert = require("convert-units");
 
 export class VolumeAreaChecker implements IConversionChecker {
   private packet: ConversionPacket;
@@ -10,6 +13,46 @@ export class VolumeAreaChecker implements IConversionChecker {
   }
 
   checkConversion(): ConversionCheckResponse {
-    return JSON.parse('{"response":"VolumeAreaChecker"}');
+    let response = new ConversionCheckResponse();
+    let source = this.getConverterFlag(this.packet.sourceUnit.toLowerCase());
+    let target = this.getConverterFlag(this.packet.targetUnit.toLowerCase());
+
+    let testValue = convert(this.packet.sourceValue)
+      .from(source)
+      .to(target);
+
+      // console.log(this.packet.sourceValue);
+      // console.log(testValue);
+      // console.log(Math.round(10*testValue)/10);
+      // console.log(this.packet.targetValue);
+      // console.log(Math.round(10*this.packet.targetValue)/10);
+
+    if (
+      Math.round(10 * testValue) / 10 ==
+      Math.round(10 * this.packet.targetValue) / 10
+    ) {
+      response.response = "correct";
+    } else {
+      response.response = "incorrect";
+    }
+
+    return response;
+  }
+
+  private getConverterFlag(unit: string) {
+    let flag = "";
+
+    switch (unit) {
+      case "cubic-inches":
+        flag = "in3";
+        break;
+      case "cubic-feet":
+        flag = "ft3";
+        break;
+      default:
+        throw new HTTP400Error("Area Unit not found: " + unit);
+    }
+
+    return flag;
   }
 }

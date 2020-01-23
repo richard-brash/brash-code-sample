@@ -13,24 +13,20 @@ export class ConversionCheckerFactory {
 
         if (TemperatureUnits.includes(packet.sourceUnit.toLowerCase()) && TemperatureUnits.includes(packet.targetUnit.toLowerCase()))
         {
-            console.log("TemperatureChecker");
             return new TemperatureChecker(packet);
         }
     
         if (VolumeAreaUnits.includes(packet.sourceUnit.toLowerCase()) && VolumeAreaUnits.includes(packet.targetUnit.toLowerCase()))
         {
-            console.log("VolumeAreaChecker");
             return new VolumeAreaChecker(packet);
         }
     
         if (VolumeContainerUnits.includes(packet.sourceUnit.toLowerCase()) && VolumeContainerUnits.includes(packet.targetUnit.toLowerCase()))
         {
-            console.log("VolumeContainerChecker");
             return new VolumeContainerChecker(packet);
         }
     
-        //  Fall Through else...  This is an Invalid packet
-        console.log("DummyChecker");
+        //  Fall Through...  This is an Invalid packet
         return new DummyChecker(packet);
     
 

@@ -9,7 +9,7 @@
     "produces": ["application/json"],
     "paths": {
       "/unit-convert": {
-        "get": {
+        "post": {
           "tags": ["Conversion Packet"],
           "summary": "Convert and check answer given",
           "responses": {
@@ -23,13 +23,18 @@
           "content": {
             "application/json": {}
           },
+          "requestBody": {
+
+          },         
           "parameters": [
             {
-              "name": "q",
-              "in": "query",
+              "name": "body",
+              "in": "body",
               "description": "The Conversion Packet",
               "required": true,
-              "type": "string"
+              "schema": {
+                "$ref": "#/definitions/ConversionPacket"
+              }              
             }
           ]
         }

@@ -1,6 +1,9 @@
 import { IConversionChecker } from "./IConversionChecker";
 import { ConversionPacket } from "../../../models/conversionPacket";
 import { ConversionCheckResponse } from "../../../models/conversionCheckResponse";
+import { HTTP400Error } from "../../../utils/httpErrors";
+
+var convert = require("convert-units");
 
 export class VolumeContainerChecker implements IConversionChecker {
   private packet: ConversionPacket;
@@ -10,6 +13,52 @@ export class VolumeContainerChecker implements IConversionChecker {
   }
 
   checkConversion(): ConversionCheckResponse {
-    return JSON.parse('{"response":"VolumeContainerChecker"}');
+    let response = new ConversionCheckResponse();
+    let source = this.getConverterFlag(this.packet.sourceUnit.toLowerCase());
+    let target = this.getConverterFlag(this.packet.targetUnit.toLowerCase());
+
+    let testValue = convert(this.packet.sourceValue)
+      .from(source)
+      .to(target);
+
+    // console.log(this.packet.sourceValue);
+    // console.log(testValue);
+    // console.log(Math.round(10*testValue)/10);
+    // console.log(this.packet.targetValue);
+    // console.log(Math.round(10*this.packet.targetValue)/10);
+
+    if (
+      Math.round(10 * testValue) / 10 ==
+      Math.round(10 * this.packet.targetValue) / 10
+    ) {
+      response.response = "correct";
+    } else {
+      response.response = "incorrect";
+    }
+
+    return response;
+  }
+
+  private getConverterFlag(unit: string) {
+    let flag = "";
+
+    switch (unit) {
+      case "liters":
+        flag = "l";
+        break;
+      case "tablespoons":
+        flag = "Tbs";
+        break;
+      case "cups":
+        flag = "cup";
+        break;
+      case "gallons":
+        flag = "gal";
+        break;
+      default:
+        throw new HTTP400Error("Area Unit not found: " + unit);
+    }
+
+    return flag;
   }
 }
