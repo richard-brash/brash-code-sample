@@ -5,6 +5,7 @@ import { ConversionPacket } from "../../../models/conversionPacket";
 describe("DummyProvider", () => {
   test("Proper Dummy Response", () => {
 
+    //  It doesn't matter what we send in here because it is always invalid
     let packet : ConversionPacket = {
       sourceUnit: "Kelvin",
       sourceValue: 1234,
@@ -15,6 +16,6 @@ describe("DummyProvider", () => {
     let slug = new DummyChecker(packet);
 
     const result = slug.checkConversion();
-    expect(result).toEqual({ response: "dummy" });
+    expect(result).toEqual({ response: "invalid" });
   });
 });

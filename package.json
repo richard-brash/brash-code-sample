@@ -4,6 +4,8 @@
   "description": "",
   "main": "server.js",
   "scripts": {
+    "clean": "rimraf dist",
+    "build": "tsc",
     "postinstall": "npx tsc",
     "dev": "tsc-watch --onSuccess \"node ./dist/server.js\"",
     "test": "jest"
