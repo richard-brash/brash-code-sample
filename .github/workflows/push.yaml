@@ -15,15 +15,15 @@ jobs:
           node-version: ${{ matrix.node }}
       - run: npm install
       - run: npm test   
-      - name: docker build
-        uses: actions-hub/docker/cli@master
-        with:
-          args: build -t richardbrash/brash-code-challenge-api .
       - name: docker login
         uses: actions-hub/docker/login@master
         env:
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+      - name: docker build
+        uses: actions-hub/docker/cli@master
+        with:
+          args: build -t richardbrash/brash-code-challenge-api .
       - name: docker push
         uses: actions-hub/docker/cli@master
         with:
