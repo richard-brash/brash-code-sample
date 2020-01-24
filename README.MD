@@ -1,11 +1,7 @@
 # Brash Code Challenge API
-> This is my response to the Code Challenge issued by Ventera - Next Steps.
+> This is my API response to the Code Challenge issued by Ventera - Next Steps.
 
-The choices made while building this project were made in an effort to highlight 
-some techniques that would make this project easier to expand and maintain
-if it were part of a larger, more complex product. Admittedly, the solution is 
-decidedly more involved than necessry but since this is part of the interview process, 
-I decided to err on the side of more is indeed more.
+The choices made while building this project were made in an effort to highlight some techniques that would make this project easier to expand and maintain if it were part of a larger, more complex product. Admittedly, the solution is decidedly more involved than necessry but since this is part of the interview process, I decided to err on the side of more is indeed more.
 
 ## Setup and Run
 
@@ -26,7 +22,11 @@ npm run dev
 
 There is no security for this API. There are a few things one may want to do to make this product production ready like using PM2 (clustering)
 
-When you run the node project, it will create a server listening on port 3000. The API entry point is: http://localhost:3000/api/v1/unit-convert . The only method exposed is HTTP POST.  
+When you run the node project, it will create a server listening on port 3000. 
+
+The API entry point is: http://localhost:3000/api/v1/unit-convert . 
+
+The only method exposed is HTTP POST.  
 
 The API expects JSON to be posted in this format.
 
