@@ -28,19 +28,21 @@ There is no security for this API. There are a few things one may want to do to 
 
 When you run the node project, it will create a server listening on port 3000. The API entry point is: http://localhost:3000/api/v1/unit-convert . The only method exposed is HTTP POST.  The API expects JSON to be posted in this format.
 
-_{
-_  "sourceUnit": "(see challenge instructions for expected values)",
-_  "sourceValue": 0,
-_  "targetUnit": "(see challenge instructions for expected values)",
-_  "targetValue": 0
-_}
-
+```sh
+{
+  "sourceUnit": "(see challenge instructions for expected values)",
+  "sourceValue": 0,
+  "targetUnit": "(see challenge instructions for expected values)",
+  "targetValue": 0
+}
+```
 The API will return JSON 
 
-_{
-_  "response": "correct | incorrect | invalid",
-_}
-
+```sh
+{
+  "response": "correct | incorrect | invalid",
+}
+```
 
 ## Release History
 
