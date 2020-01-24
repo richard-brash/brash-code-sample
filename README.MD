@@ -26,7 +26,9 @@ npm run dev
 
 There is no security for this API. There are a few things one may want to do to make this product production ready like using PM2 (clustering)
 
-When you run the node project, it will create a server listening on port 3000. The API entry point is: http://localhost:3000/api/v1/unit-convert . The only method exposed is HTTP POST.  The API expects JSON to be posted in this format.
+When you run the node project, it will create a server listening on port 3000. The API entry point is: http://localhost:3000/api/v1/unit-convert . The only method exposed is HTTP POST.  
+
+The API expects JSON to be posted in this format.
 
 ```sh
 {
@@ -40,7 +42,7 @@ The API will return JSON
 
 ```sh
 {
-  "response": "correct | incorrect | invalid",
+  "response": "correct | incorrect | invalid"
 }
 ```
 
