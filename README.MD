@@ -15,7 +15,8 @@ add .env   (Contents below)
     # Node.js server configuration
     SERVER_PORT=3000
 
-npm run dev
+npm run build
+npm run start
 ```
 
 ## Usage example
@@ -45,6 +46,9 @@ The API will return JSON
   "response": "correct | incorrect | invalid"
 }
 ```
+
+##  Develop CI/CD
+This project using github actions to build and test when code is comitted.  After testing, the github actions will build and deplpy a Docker container to DockerHub
 
 ## Release History
 
