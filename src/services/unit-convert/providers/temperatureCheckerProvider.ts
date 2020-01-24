@@ -21,12 +21,6 @@ export class TemperatureChecker implements IConversionChecker {
       .from(source)
       .to(target);
 
-      // console.log(this.packet.sourceValue);
-      // console.log(testValue);
-      // console.log(Math.round(10*testValue)/10);
-      // console.log(this.packet.targetValue);
-      // console.log(Math.round(10*this.packet.targetValue)/10);
-
     if (
       Math.round(10 * testValue) / 10 ==
       Math.round(10 * this.packet.targetValue) / 10

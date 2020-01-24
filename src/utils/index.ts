@@ -1,3 +1,13 @@
+/*
+
+The utils folder has some helper code to allow us to separate some of the 
+details from code that doesn't have to know how we handle errors and such
+
+The applyMiddleware helper accepts the list of middleware wrappers 
+we define in ./middleware/index.ts
+
+*/
+
 import { Router, Request, Response, NextFunction } from "express";
 
 type Wrapper = ((router: Router) => void);

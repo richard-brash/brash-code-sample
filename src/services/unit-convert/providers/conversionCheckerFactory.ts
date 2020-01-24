@@ -1,3 +1,19 @@
+/*
+
+The logic here is used to determine which of the resident providers will be
+instantiated and passed back to the controller for processing.
+
+I separated the logic into different providers to showcase the pattern and 
+I did it before I found the convert-units library. By using the convert-units,
+this pattern may have been a little overstated but, it still a good idea because
+later, when new unit conversions are needed that aren't addressed by the library
+or when vastly different logic needs to be used, we can keep those soecifics
+in it's own provider. This makes the whole thing easier to test, maintain, 
+and expand.
+
+*/
+
+
 import { ConversionPacket, TemperatureUnits, VolumeAreaUnits, VolumeContainerUnits } from "../../../models/conversionPacket";
 
 import {TemperatureChecker} from "./temperatureCheckerProvider";

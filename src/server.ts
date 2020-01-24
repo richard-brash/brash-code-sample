@@ -1,3 +1,13 @@
+/*
+
+This is the entry point for the entire app. It creates a server listening
+on our confirgured port. 
+
+Additionally, it pulls together all the middlewre and routing directives 
+so the code in the rest of the app is discovered and used.
+
+*/
+
 import dotenv from "dotenv";
 import http from "http";
 import express from "express";
