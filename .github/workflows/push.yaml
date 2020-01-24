@@ -4,20 +4,18 @@ jobs:
   build-and-publish:
     name: build and publish
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: [ '10', '8' ]
+    name: Node ${{ matrix.node }} sample
     steps:
       - uses: actions/checkout@master
-      - name: npm install
-        uses: actions/npm@master
+      - name: Setup node
+        uses: actions/setup-node@master
         with:
-          args: install
-      - name: npm test
-        uses: actions/npm@master
-        with:
-          args: run test
-      - name: npm lint
-        uses: actions/npm@master
-        with:
-          args: run lint
+          node-version: ${{ matrix.node }}
+      - run: npm install
+      - run: npm test    
       - name: docker build
         uses: actions/docker/cli@master
         with:
@@ -25,8 +23,8 @@ jobs:
       - name: docker login
         uses: actions/docker/login@master
         env:
-          DOCKER_PASSWORD: b0d4ac79-a0e0-4e85-ab4b-232d13bd5209
-          DOCKER_USERNAME: richardbrash
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
       - name: docker push
         uses: actions/docker/cli@master
         with:
