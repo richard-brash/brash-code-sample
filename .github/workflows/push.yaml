@@ -25,8 +25,8 @@ jobs:
       - name: docker login
         uses: actions/docker/login@master
         env:
-          DOCKER_PASSWORD: ${{ b0d4ac79-a0e0-4e85-ab4b-232d13bd5209 }}
-          DOCKER_USERNAME: ${{ richardbrash }}
+          DOCKER_PASSWORD: b0d4ac79-a0e0-4e85-ab4b-232d13bd5209
+          DOCKER_USERNAME: richardbrash
       - name: docker push
         uses: actions/docker/cli@master
         with:
